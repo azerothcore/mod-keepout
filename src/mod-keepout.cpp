@@ -23,7 +23,7 @@ public:
     Keepout() : PlayerScript("Keepout") { }
 
     std::string playername;
-    std::string mapname;
+    uint32 mapId;
     std::string maparea;
 
     void OnLogin(Player* player)
@@ -41,7 +41,7 @@ public:
             QueryResult result = WorldDatabase.PQuery("SELECT `mapId` FROM `MapLock` WHERE `mapId` = '%u'", player->GetMapId());
 
             playername = player->GetName();
-            mapname = player->GetMap()->GetMapName();
+            mapId =  player->GetMap()->GetId();
             maparea = player->GetZoneId();
 
             if (!result)
@@ -49,7 +49,7 @@ public:
 
             do
             {
-                CharacterDatabase.PQuery("INSERT INTO `mapexploit` (`player`, `map`, `area`) VALUES ('%s', '%s', '%u')", playername.c_str(), mapname.c_str(), player->GetAreaId());
+                CharacterDatabase.PQuery("INSERT INTO `mapexploit` (`player`, `map`, `area`) VALUES ('%s', '%u', '%u')", playername.c_str(), mapId, player->GetAreaId());
                 ChatHandler(player->GetSession()).PSendSysMessage("You have gone to a forbidden place your actions have been logged.");
 
                 uint32& warninggiven = player->CustomData.GetDefault<Playerwarning>("warning")->warning;
@@ -82,7 +82,7 @@ public:
 
             do
             {
-                CharacterDatabase.PQuery("INSERT INTO `mapexploit` (`player`, `map`, `area`) VALUES ('%s', '%s', '%u')", playername.c_str(), mapname.c_str(), player->GetAreaId());
+                CharacterDatabase.PQuery("INSERT INTO `mapexploit` (`player`, `map`, `area`) VALUES ('%s', '%u', '%u')", playername.c_str(), mapId, player->GetAreaId());
 
                 ChatHandler(player->GetSession()).PSendSysMessage("You have gone to a forbidden place your actions have been logged.");
 
