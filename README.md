@@ -1,9 +1,7 @@
 # ![logo](https://raw.githubusercontent.com/azerothcore/azerothcore.github.io/master/images/logo-github.png) AzerothCore
-[![Build Status](https://travis-ci.org/azerothcore/mod-keep-out.svg?branch=master)](https://travis-ci.org/azerothcore/mod-keep-out)
-
-# mod-keepout
+## mod-keepout
 Module for azerothcore to keep players who are non gm entering a zone/map
-
+- Latest build status with azerothcore: [![Build Status](https://github.com/azerothcore/mod-keep-out/workflows/core-build/badge.svg?branch=master&event=push)](https://github.com/azerothcore/mod-keep-out)
 
 ## This module currently requires:
 - AzerothCore v1.0.1+
